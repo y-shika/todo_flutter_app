@@ -22,22 +22,18 @@ class TodoScreen extends StatelessWidget {
       ),
       body: ListView(
         children: <Widget>[
-          _decoratedListTile("Tile_1"),
-          _decoratedListTile("Tile_2"),
+          _todoElement("TODO_1"),
+          _todoElement("TODO_2"),
         ],
       ),
     );
   }
 
-  Widget _decoratedListTile(String tileName) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(color: Colors.black38),
-        ),
-      ),
-      child: ListTile(
-        title: Text(tileName),
+  Widget _todoElement(String todoTitle) {
+    return Card(
+      child: Padding(
+        child: Text(todoTitle),
+        padding: EdgeInsets.all(20.0),
       ),
     );
   }
