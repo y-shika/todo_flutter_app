@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,13 +22,22 @@ class TodoScreen extends StatelessWidget {
       ),
       body: ListView(
         children: <Widget>[
-          ListTile(
-            title: Text("Tile_1"),
-          ),
-          ListTile(
-            title: Text("Tile_2"),
-          ),
+          _decoratedListTile("Tile_1"),
+          _decoratedListTile("Tile_2"),
         ],
+      ),
+    );
+  }
+
+  Widget _decoratedListTile(String tileName) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: Colors.black38),
+        ),
+      ),
+      child: ListTile(
+        title: Text(tileName),
       ),
     );
   }
