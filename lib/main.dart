@@ -7,10 +7,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'TODO App',
-      home: Scaffold(
-        body: Center(
-          child: Text("Hello World"),
-        ),
+      home: TodoScreen(),
+    );
+  }
+}
+
+class TodoScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text("Hello World"),
       ),
     );
   }
