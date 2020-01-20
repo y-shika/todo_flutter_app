@@ -30,10 +30,15 @@ class TodoScreen extends StatelessWidget {
   }
 
   Widget _todoElement(String todoTitle) {
-    return Card(
-      child: Padding(
-        child: Text(todoTitle),
-        padding: EdgeInsets.all(20.0),
+    return InkWell(
+      onTap: () {
+        print("tapped!!");
+      },
+      child: Card(
+        child: Padding(
+          child: Text(todoTitle),
+          padding: EdgeInsets.all(20.0),
+        ),
       ),
     );
   }
