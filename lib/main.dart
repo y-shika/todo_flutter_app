@@ -9,72 +9,77 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'TODO App',
-      home: TodoScreen(),
+      home: TodoPage(),
     );
   }
 }
 
-class TodoScreen extends StatelessWidget {
+// Todo要素用のクラス
+class Todo {
+  Todo(this.todoTitle, this.active);
+
+  String todoTitle;
+  bool active;
+}
+
+class TodoPage extends StatefulWidget {
+  final _todos = <Todo>[];
+
+  @override
+  _TodoPageState createState() => _TodoPageState();
+}
+
+class _TodoPageState extends State<TodoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("TODO App"),
       ),
-      body: ListView(
-        children: <Widget>[
-          TodoStatelessElement(todoTitle: "TODO_1"),
-          TodoStatelessElement(todoTitle: "TODO_2"),
-          TodoStatefulElement(todoTitle: "TODO_3"),
-          TodoStatefulElement(todoTitle: "TODO_4"),
-        ],
+      body: TodoElements(todoElements: widget._todos),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add_circle),
+        onPressed: () {
+          print("press floatbutton: ${widget._todos.length}");
+          setState(() {
+            widget._todos.add(new Todo("TODO", true));
+          });
+        },
       ),
     );
   }
 }
 
-// StatelessとStatefulで比較してみる
+class TodoElements extends StatelessWidget {
+  TodoElements({@required this.todoElements});
 
-class TodoStatelessElement extends StatelessWidget {
-  final String todoTitle;
-
-  TodoStatelessElement({@required this.todoTitle});
+  final List<Todo> todoElements;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        print("tapped!! (Stateless)");
+    return ListView.builder(
+      itemCount: todoElements.length,
+      itemBuilder: (context, index) {
+        return TodoElement(todo: todoElements[index]);
       },
-      child: Card(
-        child: Padding(
-          child: Text(todoTitle),
-          padding: EdgeInsets.all(20.0),
-        ),
-      ),
     );
   }
 }
 
-class TodoStatefulElement extends StatefulWidget {
-  TodoStatefulElement({Key key, @required this.todoTitle}) : super(key: key);
+class TodoElement extends StatelessWidget {
+  TodoElement({@required this.todo});
 
-  final String todoTitle;
+  final Todo todo;
 
-  @override
-  _TodoStatefulElementState createState() => _TodoStatefulElementState();
-}
-
-class _TodoStatefulElementState extends State<TodoStatefulElement> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print("tapped!! (Stateful)");
+        print("tapped!!");
       },
       child: Card(
         child: Padding(
-          child: Text(widget.todoTitle),
+          child: Text(todo.todoTitle),
           padding: EdgeInsets.all(20.0),
         ),
       ),
