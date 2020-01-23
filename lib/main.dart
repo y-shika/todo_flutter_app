@@ -22,7 +22,55 @@ class Todo {
   bool active;
 }
 
-class TodoPage extends StatefulWidget {
+/// TODOリストを表示するページクラス
+class TodoPage extends StatelessWidget {
+  final todoListKey = new GlobalKey<_TodoListState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("TODO App"),
+      ),
+      body: new TodoList(key: todoListKey),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(Icons.add_circle),
+        label: Text("Add TODO"),
+        onPressed: () {
+          print("Press FloatingButton");
+          todoListKey.currentState.addTodoElement();
+        },
+      ),
+    );
+  }
+}
+
+// TODO: 上手くStatefulで作れたらファイルを分ける
+class TodoList extends StatefulWidget {
+  TodoList({Key key}) : super(key: key);
+
+  final todoList = <Todo>[];
+
+  @override
+  _TodoListState createState() => _TodoListState();
+}
+
+class _TodoListState extends State<TodoList> {
+  void addTodoElement() {
+    setState(() {
+      widget.todoList.add(Todo("TODO", true));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text("TODO List Length: ${widget.todoList.length}"),
+    );
+  }
+}
+
+/* class TodoPage extends StatefulWidget {
   final _todos = <Todo>[];
 
   @override
@@ -64,7 +112,7 @@ class TodoElements extends StatelessWidget {
       },
     );
   }
-}
+} */
 
 class TodoElement extends StatelessWidget {
   TodoElement({@required this.todo});
