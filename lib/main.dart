@@ -16,9 +16,10 @@ class MyApp extends StatelessWidget {
 
 /// TODO要素用のクラス
 class Todo {
-  Todo(this.todoTitle, this.active);
+  Todo(this.title, this.detail, this.active);
 
-  String todoTitle;
+  String title;
+  String detail;
   bool active;
 }
 
@@ -59,7 +60,7 @@ class TodoList extends StatefulWidget {
 class _TodoListState extends State<TodoList> {
   void addTodoElement() {
     setState(() {
-      widget.todoList.add(Todo("TODO", true));
+      widget.todoList.add(Todo("HOGE", "FUGA", true));
     });
   }
 
@@ -88,7 +89,7 @@ class TodoElement extends StatelessWidget {
       },
       child: Card(
         child: Padding(
-          child: Text(todo.todoTitle),
+          child: Text(todo.title),
           padding: EdgeInsets.all(20.0),
         ),
       ),
