@@ -22,7 +22,7 @@ class Todo {
   bool active;
 }
 
-/// TODOリストを表示するページクラス
+/// TODOアプリのベースとなるページクラス
 class TodoPage extends StatelessWidget {
   final todoListKey = new GlobalKey<_TodoListState>();
 
@@ -32,7 +32,7 @@ class TodoPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("TODO App"),
       ),
-      body: new TodoList(key: todoListKey),
+      body: TodoList(key: todoListKey),
       floatingActionButton: FloatingActionButton.extended(
         icon: Icon(Icons.add_circle),
         label: Text("Add TODO"),
@@ -46,6 +46,7 @@ class TodoPage extends StatelessWidget {
 }
 
 // TODO: 上手くStatefulで作れたらファイルを分ける
+/// TODOリストを表示するクラス
 class TodoList extends StatefulWidget {
   TodoList({Key key}) : super(key: key);
 
@@ -64,56 +65,16 @@ class _TodoListState extends State<TodoList> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("TODO List Length: ${widget.todoList.length}"),
-    );
-  }
-}
-
-/* class TodoPage extends StatefulWidget {
-  final _todos = <Todo>[];
-
-  @override
-  _TodoPageState createState() => _TodoPageState();
-}
-
-class _TodoPageState extends State<TodoPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("TODO App"),
-      ),
-      body: TodoElements(todoElements: widget._todos),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add_circle),
-        onPressed: () {
-          print("press floatbutton: ${widget._todos.length}");
-          setState(() {
-            widget._todos.add(new Todo("TODO", true));
-          });
-        },
-      ),
-    );
-  }
-}
-
-class TodoElements extends StatelessWidget {
-  TodoElements({@required this.todoElements});
-
-  final List<Todo> todoElements;
-
-  @override
-  Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: todoElements.length,
+      itemCount: widget.todoList.length,
       itemBuilder: (context, index) {
-        return TodoElement(todo: todoElements[index]);
+        return TodoElement(todo: widget.todoList[index]);
       },
     );
   }
-} */
+}
 
+/// TODO要素を表示するクラス
 class TodoElement extends StatelessWidget {
   TodoElement({@required this.todo});
 
