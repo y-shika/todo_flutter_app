@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// Todo要素用のクラス
+/// TODO要素用のクラス
 class Todo {
   Todo(this.todoTitle, this.active);
 
