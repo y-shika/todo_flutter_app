@@ -26,12 +26,21 @@ class TodoListState extends State<TodoList> {
     });
   }
 
+  void removeTodoElement(int index) {
+    setState(() {
+      widget.todoList.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: widget.todoList.length,
       itemBuilder: (context, index) {
-        return TodoElement(todo: widget.todoList[index]);
+        return TodoElement(
+            index: index,
+            todo: widget.todoList[index],
+            onRemove: removeTodoElement);
       },
     );
   }
@@ -39,9 +48,12 @@ class TodoListState extends State<TodoList> {
 
 /// TODO要素を表示するクラス
 class TodoElement extends StatefulWidget {
-  TodoElement({@required this.todo});
+  TodoElement(
+      {@required this.index, @required this.todo, @required this.onRemove});
 
+  final int index; // TODO要素を削除する際などに必要なリストにおけるindex
   final Todo todo;
+  final Function onRemove;
 
   @override
   _TodoElementState createState() => _TodoElementState();
@@ -56,6 +68,11 @@ class _TodoElementState extends State<TodoElement> {
         setState(() {
           widget.todo.active = !widget.todo.active;
         });
+      },
+      onLongPress: () {
+        print("long press!!");
+        // TODO: ここで「本当に削除しますか？」的なダイアログを挟む
+        widget.onRemove(widget.index);
       },
       child: Card(
         child: Padding(
