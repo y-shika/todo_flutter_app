@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'todo.dart';
 import '../components/my_alert_dialog.dart';
+import '../components/my_snack_bar.dart';
 
 /// TODO要素を表示するクラス
 class TodoElement extends StatefulWidget {
@@ -35,10 +36,13 @@ class _TodoElementState extends State<TodoElement> {
 
         print("dialog result: $result");
 
-        // TODO: ここで削除する際に削除しました的なのを下にひょこっと出すWidget試す
-
         if (result == DialogAnswer.YES) {
           widget.onRemove(widget.index);
+
+          Scaffold.of(context).showSnackBar(MySnackBar(
+                  context: context,
+                  contentMessage: "${widget.todo.title}を削除しました")
+              .snackBar);
         }
       },
       child: Card(
