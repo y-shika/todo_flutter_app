@@ -37,23 +37,29 @@ class TodoListState extends State<TodoList> {
   }
 }
 
-// TODO: TODOElementもStatefulにしてtodoの中身をいじった方が良いかも
-//       このときにTodoListから受け取ったtodoの中を変更するとリストの方にも変更があるか探る（ポインタかどうか。ポインタが良いな）
 /// TODO要素を表示するクラス
-class TodoElement extends StatelessWidget {
+class TodoElement extends StatefulWidget {
   TodoElement({@required this.todo});
 
   final Todo todo;
 
   @override
+  _TodoElementState createState() => _TodoElementState();
+}
+
+class _TodoElementState extends State<TodoElement> {
+  @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print("tapped!!");
+        print("tapped!! (Stateful)");
+        setState(() {
+          widget.todo.title = "FUGA";
+        });
       },
       child: Card(
         child: Padding(
-          child: Text(todo.title),
+          child: Text(widget.todo.title),
           padding: EdgeInsets.all(20.0),
         ),
       ),
