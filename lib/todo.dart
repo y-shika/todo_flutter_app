@@ -54,14 +54,23 @@ class _TodoElementState extends State<TodoElement> {
       onTap: () {
         print("tapped!! (Stateful)");
         setState(() {
-          widget.todo.title = "FUGA";
+          widget.todo.active = !widget.todo.active;
         });
       },
       child: Card(
         child: Padding(
-          child: Text(widget.todo.title),
+          child: Text(
+            widget.todo.title,
+            style: TextStyle(
+              color: Colors.white,
+              decoration: widget.todo.active
+                  ? TextDecoration.none
+                  : TextDecoration.lineThrough,
+            ),
+          ),
           padding: EdgeInsets.all(20.0),
         ),
+        color: widget.todo.active ? Colors.blue : Colors.black12,
       ),
     );
   }
