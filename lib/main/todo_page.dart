@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'todo.dart';
+import 'todo_list.dart';
 
 /// TODOアプリのベースとなるページクラス
 class TodoPage extends StatelessWidget {
