@@ -75,6 +75,8 @@ class _TodoListState extends State<TodoList> {
   }
 }
 
+// TODO: TODOElementもStatefulにしてtodoの中身をいじった方が良いかも
+//       このときにTodoListから受け取ったtodoの中を変更するとリストの方にも変更があるか探る（ポインタかどうか。ポインタが良いな）
 /// TODO要素を表示するクラス
 class TodoElement extends StatelessWidget {
   TodoElement({@required this.todo});
