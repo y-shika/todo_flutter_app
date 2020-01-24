@@ -30,7 +30,7 @@ class _TodoElementState extends State<TodoElement> {
         print("long press!!");
 
         var result =
-            await AlertDialogShower(title: "削除", bodyMessage: "本当に削除しますか？")
+            await AlertDialogShower(title: "削除", contentMessage: "本当に削除しますか？")
                 .openDialog(context);
 
         print("dialog result: $result");
