@@ -72,6 +72,7 @@ class _TodoElementState extends State<TodoElement> {
       onLongPress: () {
         print("long press!!");
         // TODO: ここで「本当に削除しますか？」的なダイアログを挟む
+        //       alertDialogが良さそう
         widget.onRemove(widget.index);
       },
       child: Card(
