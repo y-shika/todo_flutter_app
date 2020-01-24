@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'todo.dart';
+import '../components/my_alert_dialog.dart';
 
 /// TODO要素を表示するクラス
 class TodoElement extends StatefulWidget {
@@ -25,11 +26,20 @@ class _TodoElementState extends State<TodoElement> {
           widget.todo.active = !widget.todo.active;
         });
       },
-      onLongPress: () {
+      onLongPress: () async {
         print("long press!!");
-        // TODO: ここで「本当に削除しますか？」的なダイアログを挟む
-        //       alertDialogが良さそう
-        widget.onRemove(widget.index);
+
+        var result =
+            await AlertDialogShower(title: "削除", bodyMessage: "本当に削除しますか？")
+                .openDialog(context);
+
+        print("dialog result: $result");
+
+        // TODO: ここで削除する際に削除しました的なのを下にひょこっと出すWidget試す
+
+        if (result == DialogAnswer.YES) {
+          widget.onRemove(widget.index);
+        }
       },
       child: Card(
         child: Padding(
