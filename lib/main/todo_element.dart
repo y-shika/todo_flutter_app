@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'todo.dart';
 import '../components/my_alert_dialog.dart';
 import '../components/my_snack_bar.dart';
+import 'todo.dart';
 
 /// TODO要素を表示するクラス
 class TodoElement extends StatefulWidget {
@@ -22,26 +22,26 @@ class _TodoElementState extends State<TodoElement> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print("tapped!! (Stateful)");
+        print('tapped!! (Stateful)');
         setState(() {
           widget.todo.active = !widget.todo.active;
         });
       },
       onLongPress: () async {
-        print("long press!!");
+        print('long press!!');
 
-        var result =
-            await AlertDialogShower(title: "削除", contentMessage: "本当に削除しますか？")
+        final dynamic result =
+            await AlertDialogShower(title: '削除', contentMessage: '本当に削除しますか？')
                 .openDialog(context);
 
-        print("dialog result: $result");
+        print('dialog result: $result');
 
-        if (result == DialogAnswer.YES) {
+        if (result == DialogAnswer.yes) {
           widget.onRemove(widget.index);
 
           Scaffold.of(context).showSnackBar(MySnackBar(
                   context: context,
-                  contentMessage: "${widget.todo.title}を削除しました")
+                  contentMessage: '${widget.todo.title}を削除しました')
               .snackBar);
         }
       },
@@ -56,7 +56,7 @@ class _TodoElementState extends State<TodoElement> {
                   : TextDecoration.lineThrough,
             ),
           ),
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20),
         ),
         color: widget.todo.active ? Colors.blue : Colors.black12,
       ),

@@ -7,7 +7,7 @@ import 'todo_element.dart';
 class TodoList extends StatefulWidget {
   TodoList({Key key}) : super(key: key);
 
-  final todoList = <Todo>[];
+  final List<Todo> todoList = <Todo>[];
 
   @override
   TodoListState createState() => TodoListState();
@@ -16,7 +16,7 @@ class TodoList extends StatefulWidget {
 class TodoListState extends State<TodoList> {
   void addTodoElement() {
     setState(() {
-      widget.todoList.add(Todo("HOGE", "FUGA", true));
+      widget.todoList.add(Todo('HOGE', 'FUGA'));
     });
   }
 

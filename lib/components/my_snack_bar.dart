@@ -10,12 +10,12 @@ class MySnackBar {
     return SnackBar(
       content: Text(contentMessage),
       action: SnackBarAction(
-        label: "Close",
+        label: 'Close',
         onPressed: () {
           Scaffold.of(context).removeCurrentSnackBar();
         },
       ),
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
     );
   }
 }

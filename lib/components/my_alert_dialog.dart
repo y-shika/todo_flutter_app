@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// Dialogの戻り値として使う列挙型
-enum DialogAnswer { YES, NO }
+enum DialogAnswer { yes, no }
 
 /// 警告ダイアログを表示するクラス
 /// 汎用性を持たせるために文字列は呼び出し側から指定する
@@ -12,11 +12,11 @@ class AlertDialogShower {
   final String contentMessage;
 
   Future openDialog(BuildContext context) {
-    print("open dialog!!");
+    print('open dialog!!');
 
     return showDialog<DialogAnswer>(
       context: context,
-      builder: (BuildContext context) {
+      builder: (context) {
         return MyAlertDialog(title: title, contentMessage: contentMessage);
       },
     );
@@ -25,7 +25,7 @@ class AlertDialogShower {
 
 /// ダイアログウィジェットのクラス
 class MyAlertDialog extends StatelessWidget {
-  MyAlertDialog({@required this.title, @required this.contentMessage});
+  const MyAlertDialog({@required this.title, @required this.contentMessage});
 
   final String title;
   final String contentMessage;
@@ -37,12 +37,12 @@ class MyAlertDialog extends StatelessWidget {
       content: Text(contentMessage),
       actions: <Widget>[
         FlatButton(
-          child: Text("Cancel"),
-          onPressed: () => Navigator.of(context).pop(DialogAnswer.NO),
+          child: const Text('Cancel'),
+          onPressed: () => Navigator.of(context).pop(DialogAnswer.no),
         ),
         FlatButton(
-          child: Text("OK"),
-          onPressed: () => Navigator.of(context).pop(DialogAnswer.YES),
+          child: const Text('OK'),
+          onPressed: () => Navigator.of(context).pop(DialogAnswer.yes),
         ),
       ],
     );
