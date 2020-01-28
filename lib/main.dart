@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todo_flutter_app/main/todo_bloc_provider.dart';
 
-import 'main/todo_page.dart';
+import 'main/todo_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,7 +10,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'TODO App',
-      home: TodoPage(),
+      home: TodoBlocProvider(
+        child: TodoScreen(),
+      ),
     );
   }
 }

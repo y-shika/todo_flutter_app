@@ -1,40 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:todo_flutter_app/main/todo_bloc_provider.dart';
 
-import 'todo.dart';
 import 'todo_element.dart';
 
 /// TODOリストを表示するクラス
-class TodoList extends StatefulWidget {
-  TodoList({Key key}) : super(key: key);
+class TodoList extends StatelessWidget {
+  const TodoList({@required this.bloc});
 
-  final List<Todo> todoList = <Todo>[];
-
-  @override
-  TodoListState createState() => TodoListState();
-}
-
-class TodoListState extends State<TodoList> {
-  void addTodoElement() {
-    setState(() {
-      widget.todoList.add(Todo('HOGE', 'FUGA'));
-    });
-  }
-
-  void removeTodoElement(int index) {
-    setState(() {
-      widget.todoList.removeAt(index);
-    });
-  }
+  final TodoBloc bloc;
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: widget.todoList.length,
-      itemBuilder: (context, index) {
-        return TodoElement(
-            index: index,
-            todo: widget.todoList[index],
-            onRemove: removeTodoElement);
+    return StreamBuilder<void>(
+      //initialData: 0,
+      stream: bloc.onChange,
+      builder: (context, snapshot) {
+        print('TodoList builder!');
+
+        return ListView.builder(
+          itemCount: bloc.todoList.length,
+          itemBuilder: (context, index) {
+            print('Reached itemBuilder');
+            return TodoElement(todo: bloc.todoList[index]);
+          },
+        );
       },
     );
   }
