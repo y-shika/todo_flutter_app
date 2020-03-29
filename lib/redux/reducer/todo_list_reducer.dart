@@ -4,13 +4,24 @@ import 'package:todo_flutter_app/redux/action/actions.dart';
 
 // Reducerは新たなStateを発行して送る
 final todoListReducer = combineReducers<List<TodoEntity>>([
-  TypedReducer<List<TodoEntity>, AddTodoAction>(_setTodoList),
+  TypedReducer<List<TodoEntity>, AddTodoAction>(_addTodo),
+  TypedReducer<List<TodoEntity>, InvertTodoAction>(_invertTodo),
 ]);
 
-List<TodoEntity> _setTodoList(List<TodoEntity> todoList, AddTodoAction action) {
-  final newList = <TodoEntity>[]
-    ..addAll(todoList)
-    ..add(action.todo);
+List<TodoEntity> _addTodo(List<TodoEntity> todoList, AddTodoAction action) {
+  return List.from(todoList)..add(action.todo);
+}
 
-  return newList;
+List<TodoEntity> _invertTodo(
+    List<TodoEntity> todoList, InvertTodoAction action) {
+  return todoList
+      .map((todo) {
+        // TODO: 上手くいかなかったら元に戻す
+        if(todo.id == action.todoId) {
+          todo.active = !todo.active;
+        }
+        return todo;
+      })
+      //.map((todo) => todo.id == action.todoId ? action.invertedTodo : todo)
+      .toList();
 }

@@ -40,7 +40,6 @@ class MyApp extends StatelessWidget {
             converter: (store) {
               return () => store.dispatch(AddTodoAction(TodoEntity(
                     'Title${store.state.todoList.length}',
-                    'Detail${store.state.todoList.length}',
                   )));
             },
             builder: (context, callback) => FloatingActionButton(
