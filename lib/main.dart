@@ -36,17 +36,14 @@ class MyApp extends StatelessWidget {
               },
             ),
           ),
-          floatingActionButton: StoreConnector<AppState, Function()>(
-            converter: (store) {
-              return () => store.dispatch(AddTodoAction(TodoEntity(
-                    'Title${store.state.todoList.length}',
-                  )));
+          floatingActionButton: FloatingActionButton.extended(
+            icon: Icon(Icons.add_circle),
+            label: const Text('Add TODO'),
+            onPressed: () {
+              store.dispatch(AddTodoAction(TodoEntity(
+                'Title${store.state.todoList.length}',
+              )));
             },
-            builder: (context, callback) => FloatingActionButton(
-              onPressed: callback,
-              tooltip: 'Add TODO',
-              child: Icon(Icons.add),
-            ),
           ),
         ),
       ),
