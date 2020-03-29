@@ -12,7 +12,6 @@ class TodoElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: StoreConnectorでラッピングする
     return StoreConnector<AppState, _ViewModel>(
       converter: (store) {
         return _ViewModel(

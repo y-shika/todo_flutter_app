@@ -16,12 +16,10 @@ List<TodoEntity> _invertTodo(
     List<TodoEntity> todoList, InvertTodoAction action) {
   return todoList
       .map((todo) {
-        // TODO: 上手くいかなかったら元に戻す
         if(todo.id == action.todoId) {
           todo.active = !todo.active;
         }
         return todo;
       })
-      //.map((todo) => todo.id == action.todoId ? action.invertedTodo : todo)
       .toList();
 }
