@@ -30,6 +30,7 @@ dependencies:
   uuid: ^2.0.4
 
   key_value_store: ^1.0.0
+  key_value_store_flutter: ^1.0.0
 
 dev_dependencies:
   flutter_test:
