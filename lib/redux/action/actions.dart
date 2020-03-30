@@ -1,11 +1,11 @@
-import 'package:todo_flutter_app/models/todo_entity.dart';
+import 'package:todo_flutter_app/models/todo.dart';
 
 class AddTodoAction {
   AddTodoAction(
     this.todo,
   );
 
-  final TodoEntity todo;
+  final Todo todo;
 }
 
 class InvertTodoAction {

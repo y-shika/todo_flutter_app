@@ -1,14 +1,14 @@
 import 'package:redux/redux.dart';
-import 'package:todo_flutter_app/models/todo_entity.dart';
+import 'package:todo_flutter_app/models/todo.dart';
 import 'package:todo_flutter_app/redux/action/actions.dart';
 
 // Reducerは新たなStateを発行して送る
-final todoListReducer = combineReducers<List<TodoEntity>>([
-  TypedReducer<List<TodoEntity>, AddTodoAction>(_addTodo),
-  TypedReducer<List<TodoEntity>, InvertTodoAction>(_invertTodo),
+final todoListReducer = combineReducers<List<Todo>>([
+  TypedReducer<List<Todo>, AddTodoAction>(_addTodo),
+  TypedReducer<List<Todo>, InvertTodoAction>(_invertTodo),
 ]);
 
-List<TodoEntity> _addTodo(List<TodoEntity> todoList, AddTodoAction action) {
+List<Todo> _addTodo(List<Todo> todoList, AddTodoAction action) {
   return List.from(todoList)..add(action.todo);
 }
 
@@ -16,8 +16,8 @@ List<TodoEntity> _addTodo(List<TodoEntity> todoList, AddTodoAction action) {
 // しかしこれはReduxで構築する以上解決は難しいかもしれない
 // (参考にしていたリポジトリでも同様の書き方をしているため)
 // https://github.com/brianegan/flutter_architecture_samples/blob/master/redux/lib/reducers/todos_reducer.dart
-List<TodoEntity> _invertTodo(
-    List<TodoEntity> todoList, InvertTodoAction action) {
+List<Todo> _invertTodo(
+    List<Todo> todoList, InvertTodoAction action) {
   return todoList
       .map((todo) {
         if(todo.id == action.todoId) {

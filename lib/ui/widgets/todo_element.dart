@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:todo_flutter_app/models/todo_entity.dart';
+import 'package:todo_flutter_app/models/todo.dart';
 import 'package:todo_flutter_app/redux/action/actions.dart';
 import 'package:todo_flutter_app/redux/state/app_state.dart';
 
@@ -8,7 +8,7 @@ import 'package:todo_flutter_app/redux/state/app_state.dart';
 class TodoElement extends StatelessWidget {
   const TodoElement({this.todo});
 
-  final TodoEntity todo;
+  final Todo todo;
 
   @override
   Widget build(BuildContext context) {
