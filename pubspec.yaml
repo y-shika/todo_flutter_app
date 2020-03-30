@@ -32,6 +32,8 @@ dependencies:
   key_value_store: ^1.0.0
   key_value_store_flutter: ^1.0.0
 
+  shared_preferences: ^0.4.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
