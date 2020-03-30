@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:todo_flutter_app/models/github_result_dto.dart';
 import 'package:todo_flutter_app/repositories/todo_entity.dart';
 import 'package:todo_flutter_app/repositories/todo_list_repository.dart';
 
@@ -27,5 +28,13 @@ class LocalStorageRepository implements TodoListRepository {
       localStorage.saveTodoList(todoList),
     ]);
   }
-  
+
+  @override
+  Future<GithubResultDto> fetch() {
+    // TODO: Debugメッセージ 後に消す
+    print('Debug: repository fetch is called!');
+
+    // TODO: 非同期にしなくて良い？動かなかったりしたら調べてみる
+    return localStorage.fetch();
+  }
 }

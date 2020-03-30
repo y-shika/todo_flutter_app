@@ -22,6 +22,12 @@ Middleware<AppState> _createSaveTodoList(TodoListRepository repository) {
     // TODO: Debugメッセージ 後に消す
     print('Debug: middleware _createSaveTodoList is called!');
 
+    // TODO: 取得できることを確認した後に正しい実装に変えたりする
+    // apiレスポンスをmiddlewareで取得できるかのテスト
+    repository.fetch().then((dto) {
+      print('login: ${dto.login}\nid: ${dto.id}\navatar_url: ${dto.avatarUrl}');
+    });
+
     next(action);
     repository.saveTodoList(
       todoListSelector(store.state).map((todo) => todo.toEntity()).toList(),
