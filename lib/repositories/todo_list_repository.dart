@@ -6,7 +6,5 @@ abstract class TodoListRepository {
 
   Future saveTodoList(List<TodoEntity> todoList);
 
-  // TODO: APIの取得テストのためにfetchを生やす 後々は別のrepositoryに切り出したりする
-  // TODO: github apiで取れるレスポンスに合わせたクラスを作ってジェネリックの中に入れる
   Future<GithubResultDto> fetch();
 }

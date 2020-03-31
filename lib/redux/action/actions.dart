@@ -11,10 +11,7 @@ class AddTodoAction {
 class InvertTodoAction {
   InvertTodoAction(
     this.todoId,
-    //this.invertedTodo,
   );
 
   final String todoId;
-  // TODO: 上手くいかなかったらdispatch時にinvertedTodoを指定する
-  //final TodoEntity invertedTodo;
 }
