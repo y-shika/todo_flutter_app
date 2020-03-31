@@ -18,7 +18,6 @@ class KeyValueStorage implements TodoListRepository {
     return codec
         .decode(store.getString(key))['todoList']
         .cast<Map<String, Object>>()
-        // TODO: fromJsonをTodoEntityに生やしてそれを呼ぶ
         .map<TodoEntity>(TodoEntity.fromJson)
         .toList(growable: false) as List<TodoEntity>;
   }

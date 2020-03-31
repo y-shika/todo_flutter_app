@@ -15,7 +15,6 @@ class GithubResultDto {
   }
 
   final String login;
-  // TODO: レスポンスを見た感じintっぽいが何か問題が発生したら見直して調べる
   final int id;
   final String avatarUrl;
 }

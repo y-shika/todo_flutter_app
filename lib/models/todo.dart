@@ -1,7 +1,6 @@
 import 'package:todo_flutter_app/repositories/todo_entity.dart';
 import 'package:uuid/uuid.dart';
 
-// TODO: このクラスは`Todo`とし、別で`TodoEntity`を作る必要がありそう
 class Todo {
   Todo(this.title, {this.active = true, String detail, String id})
     : detail = detail ?? '',
