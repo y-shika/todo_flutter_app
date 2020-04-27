@@ -19,9 +19,6 @@ List<Middleware<AppState>> createStoreTodoMiddleware(
 
 Middleware<AppState> _createSaveTodoList(TodoListRepository repository) {
   return (store, dynamic action, next) {
-    // TODO: Debugメッセージ 後に消す
-    print('Debug: middleware _createSaveTodoList is called!');
-
     // TODO: 取得できることを確認した後に正しい実装に変えたりする
     // apiレスポンスをmiddlewareで取得できるかのテスト
     repository.fetch().then((dto) {
