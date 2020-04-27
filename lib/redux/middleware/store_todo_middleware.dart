@@ -21,8 +21,12 @@ Middleware<AppState> _createSaveTodoList(TodoListRepository repository) {
   return (store, dynamic action, next) {
     // TODO: 取得できることを確認した後に正しい実装に変えたりする
     // apiレスポンスをmiddlewareで取得できるかのテスト
-    repository.fetch().then((dto) {
-      print('login: ${dto.login}\nid: ${dto.id}\navatar_url: ${dto.avatarUrl}');
+    repository.fetch().then((todoListDto) {
+      todoListDto.asMap().forEach((index, todo) => {
+            print('$index'),
+            print(
+                'id: ${todo.id}\ntitle: ${todo.title}\nactive: ${todo.active}\ndetail: ${todo.detail}\n'),
+          });
     });
 
     next(action);
